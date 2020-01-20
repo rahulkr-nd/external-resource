@@ -1,0 +1,58 @@
+Configuration:
+  Properties:
+    Property:
+      name: filename
+      value: "/data/idms/logs/externalresource"
+  status: info
+  name: NonProdLoggingConfigs
+  
+  # Configuring Appender
+  appenders:
+    # Console Appender
+    Console:
+      name: Console
+      PatternLayout:
+        Pattern: "%d{DEFAULT} %-5p %c{1}:%L -[%X{tracer}]- -[THREAD ID=%t] %m%n"
+    # RollingFile Appender
+    RollingFile:
+      name: RollingFile
+      fileName: ${filename}.log
+      filePattern: ${filename}.log.%d{yyyy-MM-dd}
+      PatternLayout:
+        Pattern: "%d{DEFAULT} %-5p %c{1}:%L -[%X{tracer}]- -[THREAD ID=%t] %m%n"
+      Policies:
+        TimeBasedTriggeringPolicy:
+           interval: 1
+           modulate: true
+    # Syslog Appender
+    Syslog:
+       name: Syslog
+       appName: external-resource
+       host: localhost
+       port: 514
+       protocol: TCP
+       facility: LOCAL7
+       newLine: true
+       includeMDC: true
+       format: RFC5424
+    Sentry:
+       name: Sentry
+       ThresholdFilter:
+          level: warn
+  Loggers:
+    logger:
+      - name: com.netradyne
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: Console
+          - ref: RollingFile
+          - ref: Syslog
+          - ref: Sentry
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console
+        - ref: RollingFile
+        - ref: Syslog
+        - ref: Sentry

@@ -1,0 +1,37 @@
+<html xmlns="http://netradyne.com">
+
+<head>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css"></link>
+<link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css"></link>
+<link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"></link>
+</head>
+
+<body>
+	<img src="../static/img/logo.png" width="193" height="40" hspace="30" vspace="10" th:src="@{img/logo.png}"/>
+	<button id = "logout" class='btn btn-success pull-right' style="display: none;background:none;border:none;color:green;font-weight:bold;padding: 25px 30px">log
+			out</button>
+	<div class="container">
+		<!-- Button -->
+
+		<div class="form-group">
+		<label class="col-md-4 control-label" for="submit"></label>
+			<div class="col-md-4">
+				<button id="partner" name="submit" class="btn btn-primary btn-login">check
+					partner</button>
+					</div>
+					<div class="col-md-4">
+				<button id="installer" name="submit" class="btn btn-primary btn-login">check
+					installer</button>
+					</div>
+			</div>
+		</div>
+		<div class="loader" style="display: none"></div>
+		<div id="auth" style="display: none"> Not authorized to view the resource</div> 
+	<script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	</div>
+</body>
+
+</html>
